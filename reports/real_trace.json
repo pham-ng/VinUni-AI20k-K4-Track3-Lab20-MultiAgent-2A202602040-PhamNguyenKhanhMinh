@@ -1,0 +1,13 @@
+﻿{
+  "request": "Research GraphRAG state-of-the-art",
+  "final_answer": "GraphRAG is a state-of-the-art methodology...",
+  "trace": [
+    { "name": "supervisor_decision", "payload": { "route": "researcher" } },
+    { "name": "researcher_run", "payload": { "sources_count": 0, "input_tokens": 43, "output_tokens": 387, "cost_usd": 0.00023865 } },
+    { "name": "supervisor_decision", "payload": { "route": "analyst" } },
+    { "name": "analyst_run", "payload": { "input_tokens": 436, "output_tokens": 516, "cost_usd": 0.000375 } },
+    { "name": "supervisor_decision", "payload": { "route": "writer" } },
+    { "name": "writer_run", "payload": { "input_tokens": 963, "output_tokens": 710, "cost_usd": 0.00057045 } },
+    { "name": "supervisor_decision", "payload": { "route": "done" } }
+  ]
+}
