@@ -1,16 +1,45 @@
 """Search client abstraction for ResearcherAgent."""
 
-from multi_agent_research_lab.core.errors import StudentTodoError
+import os
+
+import requests
+
 from multi_agent_research_lab.core.schemas import SourceDocument
 
 
 class SearchClient:
     """Provider-agnostic search client skeleton."""
 
+    def __init__(self):
+        from multi_agent_research_lab.core.config import get_settings
+        settings = get_settings()
+        self.api_key = settings.tavily_api_key
+        self.url = "https://api.tavily.com/search"
+
     def search(self, query: str, max_results: int = 5) -> list[SourceDocument]:
-        """Search for documents relevant to a query.
+        """Search for documents relevant to a query."""
+        if not self.api_key:
+            # Optionally raise an error or mock return
+            return []
 
-        TODO(student): Implement with Tavily, Bing, SerpAPI, internal docs, or a local mock.
-        """
+        payload = {
+            "api_key": self.api_key,
+            "query": query,
+            "max_results": max_results,
+            "include_answer": False,
+        }
 
-        raise StudentTodoError("TODO(student): implement SearchClient.search")
+        response = requests.post(self.url, json=payload, timeout=15)
+        response.raise_for_status()
+        data = response.json()
+
+        documents = []
+        for result in data.get("results", []):
+            documents.append(
+                SourceDocument(
+                    title=result.get("title", ""),
+                    url=result.get("url", ""),
+                    snippet=result.get("content", ""),
+                )
+            )
+        return documents

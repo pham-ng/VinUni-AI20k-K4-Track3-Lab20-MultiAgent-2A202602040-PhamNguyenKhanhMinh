@@ -1,4 +1,4 @@
-# Lab Guide: Multi-Agent Research System
+﻿# Lab Guide: Multi-Agent Research System
 
 ## Scenario
 
@@ -22,7 +22,7 @@ File gợi ý:
 - `src/multi_agent_research_lab/cli.py`
 - `src/multi_agent_research_lab/services/llm_client.py`
 
-TODO(student): thay baseline placeholder bằng một call LLM thật.
+Hoàn thành: thay baseline placeholder bằng một call LLM thật.
 
 ## Milestone 2: Supervisor
 
@@ -31,7 +31,7 @@ File gợi ý:
 - `src/multi_agent_research_lab/agents/supervisor.py`
 - `src/multi_agent_research_lab/graph/workflow.py`
 
-TODO(student): implement routing policy.
+Hoàn thành: implement routing policy.
 
 Gợi ý câu hỏi thiết kế:
 
@@ -49,7 +49,7 @@ File gợi ý:
 - `src/multi_agent_research_lab/agents/analyst.py`
 - `src/multi_agent_research_lab/agents/writer.py`
 
-TODO(student): implement từng worker.
+Hoàn thành: implement từng worker.
 
 ## Milestone 4: Trace và benchmark
 
@@ -114,4 +114,7 @@ Cách khắc phục (chọn 1 trong 3):
 Mỗi nhóm trả lời 2 câu:
 
 1. Case nào nên dùng multi-agent? Vì sao?
+   - **Trả lời**: Nên dùng multi-agent cho các bài toán phức tạp, có nhiều bước tách biệt cần kỹ năng chuyên sâu khác nhau (như research, code, phân tích, viết báo cáo). Multi-agent giúp giảm hallucination do mỗi agent chỉ làm một nhiệm vụ nhỏ và dễ dàng thay thế, nâng cấp từng phần (ví dụ đổi mô hình rẻ hơn cho task đơn giản).
 2. Case nào không nên dùng multi-agent? Vì sao?
+   - **Trả lời**: Không nên dùng cho các bài toán đơn giản (như dịch thuật, tóm tắt 1 đoạn văn, hỏi đáp QA cơ bản từ một tài liệu đã cho) vì multi-agent tốn kém token (do phải truyền state qua lại), tăng độ trễ (latency) và tăng sự phức tạp không cần thiết (overhead).
+
